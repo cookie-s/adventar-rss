@@ -1,0 +1,5 @@
+indexes:
+- kind: UpdatedAt
+  properties:
+  - name: entryid
+  - name: updated
