@@ -18,13 +18,13 @@ class Adventar
         entries: (entries.map do |e|
           old = History.find_old(e['id'])
           updated = old.nil? ? Time.now : old['updated']
-          History.update e['id'] if old.nil? && !e['url'].empty?
+          History.update e['id'] if old.nil? && !e['url'].nil? && !e['url'].empty?
 
           {
-            date: e['date'],
-            title: e['title'],
-            url: e['url'],
-            updated: updated,
+            date: e['date'] || Time.now,
+            title: e['title'] || '',
+            url: e['url'] || '',
+            updated: updated || Time.now,
           }
         end.reject{|e| e[:url].empty?}),
       }
